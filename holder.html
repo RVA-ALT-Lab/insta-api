@@ -1,0 +1,63 @@
+<!doctype html>
+<html class="no-js" lang="EN">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <h1>Instagram Tag Embed</h1>
+        <div class="directions">
+            <p>Put the tag (just one, sorry but that's Instagram's limit) you want in the box and click the 'search' button.</p> 
+            <p>You'll see the results regenerate on this page with your tag. If it's what you want, click on the 'copy' button and paste that in to the HTML editor of your choice (Blackboard, Canvas, WordPress etc.).</p>
+        </div>
+        <div class="business">
+            <div class="tag-stuff">
+                <input id="newTag" value="soup">
+                <button id="generate">Search</button>
+            </div>
+            <div class="embed-stuff">
+                <input id="embed">
+                <button id="copy">Copy</button>
+                <div id="success">👍</div>
+            </div>
+        </div>
+        <div id="holder">
+            <iframe id="example" src="https://rampages.us/extras/widgets/insta-api/" width="100%" height="2200px" frameBorder="0"></iframe>
+        </div>
+       <script>
+        let tag = document.getElementById('generate');
+        tag.onclick = function() { 
+            document.getElementById('example').src = 'https://rampages.us/extras/widgets/insta-api/?tag='+document.getElementById('newTag').value;
+            document.getElementById('embed').value = document.getElementById('holder').innerHTML.trim();
+            document.getElementById('holder').setAttribute('readonly', '')
+        }
+
+        let copy = document.getElementById('copy');
+        copy.onclick = function (){
+                   
+         let copyText = document.getElementById("embed");
+          copyText.select();
+
+           try {
+                var successful = document.execCommand("copy");
+                document.getElementById('success').classList.add('victory')
+              } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+              }
+        }
+
+       </script>
+    </body>
+</html>
